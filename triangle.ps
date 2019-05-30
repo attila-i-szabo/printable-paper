@@ -1,0 +1,65 @@
+%!PS-Adobe-3.0
+%%BoundingBox: 0 0 595 842
+%%Pages: 1
+%%Page: 1 1
+
+<< /PageSize [595 842] >> setpagedevice
+
+/pagewidth 595 def
+/pageheight 842 def
+
+/side 20 def
+
+%%%%%%%%%%%%%%%%%%%
+%% Slanted lines %%
+%%%%%%%%%%%%%%%%%%%
+
+/dy pageheight def
+/dx dy 3 sqrt div def
+% Number of lines to be drawn
+/dxnum dx side div ceiling cvi def
+/pwnum pagewidth side div ceiling cvi def
+/snum dxnum pwnum add def
+
+newpath
+dxnum neg side mul 0 moveto
+snum {
+    dx dy rlineto
+    dx neg dy neg rmoveto
+    side 0 rmoveto
+} repeat
+0.75 setlinewidth
+0.7 setgray
+stroke
+
+newpath
+0 0 moveto
+snum {
+    dx neg dy rlineto
+    dx dy neg rmoveto
+    side 0 rmoveto
+} repeat
+0.75 setlinewidth
+0.7 setgray
+stroke
+
+%%%%%%%%%%%%%%%%%%%%%%
+%% Horizontal lines %%
+%%%%%%%%%%%%%%%%%%%%%%
+
+/hsep 0.75 sqrt side mul def
+/hnum pageheight hsep div ceiling cvi def
+
+newpath
+0 0 moveto
+hnum {
+    pagewidth 0 rlineto
+    pagewidth neg hsep rmoveto
+} repeat
+0.75 setlinewidth
+0.7 setgray
+stroke
+
+showpage
+
+%%EOF

@@ -1,0 +1,56 @@
+%!
+%%DocumentMedia: a4 595 842 80 () ()
+<< /PageSize [595 842] >> setpagedevice
+
+/stave 18 def % Width of a regular stave
+/num 10 def   % Number of staves
+
+/sep stave 4 div def % Separation of lines
+/skip % Skip between staves =
+842 num 10 mul sep mul sub % total space between staves
+num 1 add div % divided by white spaces
+def
+
+/music { % Draws a regular stave
+    5 {
+	595 0 rlineto
+	-595 sep rmoveto
+    } repeat
+    0 sep -1 mul rmoveto
+} def
+
+/grandside { % Draws the regular part of the grand stave
+    music
+    0 sep 2 mul rmoveto
+    music
+    0 skip rmoveto
+} def
+
+/page { % Draws a full page
+    newpath
+    0 skip moveto
+    num {grandside} repeat
+    closepath
+    0.7 setgray
+    0.75 setlinewidth
+    stroke
+    
+    newpath
+    0 skip 5 sep mul add moveto
+    num {
+	595 0 rlineto
+	-595 skip 10 sep mul add rmoveto
+    } repeat
+    closepath
+    0.45 setgray
+    0.75 setlinewidth
+    stroke
+} def
+
+%%Pages: 2
+%%Page: 1 1
+page
+showpage
+%%Page: 2 2
+page
+showpage

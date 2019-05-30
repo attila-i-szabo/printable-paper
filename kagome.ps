@@ -1,0 +1,107 @@
+%!PS-Adobe-3.0
+%%BoundingBox: 0 0 595 842
+%%Pages: 1
+%%Page: 1 1
+
+<< /PageSize [595 842] >> setpagedevice
+
+/pagewidth 595 def
+/pageheight 842 def
+
+/side 20 def
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Honeycomb lattice %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+% Common multiples of side
+/sqrt3 3 sqrt side mul def
+/sqrt32 0.75 sqrt side mul def
+/half 0.5 side mul def
+/row pagewidth sqrt3 div ceiling cvi 1 add def
+/col pageheight 3 side mul div ceiling cvi def
+
+% Draws a unit cell of the honeycomb lattice (motif: upside-down Y)
+/honeycell {
+    sqrt32     half     rlineto
+    0          side     rmoveto
+    0          side neg rlineto
+    sqrt32     half neg rlineto
+} def
+
+% Draws two rows of unit cells, properly shifted relative to each other
+/honeyrow {
+    % Row 1
+    row {honeycell} repeat
+    row neg sqrt3 mul 0 rmoveto
+    % Move up, and half a unit cell to the left
+    sqrt32 neg 1.5 side mul rmoveto
+    % Row 2
+    row {honeycell} repeat
+    row neg sqrt3 mul 0 rmoveto
+    % Move up and half a unit cell to the right
+    sqrt32 1.5 side mul rmoveto
+} def
+
+/honey {
+    newpath
+    0 0 moveto
+    col {honeyrow} repeat
+    0.5 setlinewidth
+    0.8 setgray
+    stroke
+} def
+
+%%%%%%%%%%%%%%%%%%%%
+%% Kagome lattice %%
+%%%%%%%%%%%%%%%%%%%%
+
+%% Definitions
+/kside sqrt3 def
+%% Slanted lines
+/dy pageheight def
+/dx dy 3 sqrt div def
+% Number of lines to be drawn
+/dxnum dx kside div ceiling cvi def
+/pwnum pagewidth kside div ceiling cvi def
+/snum dxnum pwnum add def
+%% Horizontal lines
+/hsep 0.75 sqrt kside mul def
+/hnum pageheight hsep div ceiling cvi def
+
+%% Plotting
+/kagome {
+    newpath
+    % Slanted lines 1
+    dxnum neg kside mul 0 moveto
+    kside 6 div 0 rmoveto
+    snum {
+        dx dy rlineto
+        dx neg dy neg rmoveto
+        kside 0 rmoveto
+    } repeat
+    % Slanted lines 2
+    kside -6 div 0 moveto
+    snum {
+        dx neg dy rlineto
+        dx dy neg rmoveto
+        kside 0 rmoveto
+    } repeat
+    % Horizontal lines
+    0 hsep 6 div moveto
+    hnum {
+        pagewidth 0 rlineto
+        pagewidth neg hsep rmoveto
+    } repeat
+    
+    0.75 setlinewidth
+    0.7 setgray
+    stroke
+} def
+
+honey
+kagome
+
+showpage
+
+%%EOF

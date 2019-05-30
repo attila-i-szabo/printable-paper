@@ -1,0 +1,66 @@
+%!PS-Adobe-3.0
+%%BoundingBox: 0 0 595 842
+%%Pages: 1
+%%Page: 1 1
+
+<< /PageSize [595 842] >> setpagedevice
+
+/mm 72 25.4 div def
+/hline {
+    210 mm mul 0 rlineto
+    -210 mm mul mm rmoveto
+} def
+/mhline {
+    210 mm mul 0 rlineto
+    -210 mm mul 5 mm mul rmoveto
+} def
+/thline {
+    210 mm mul 0 rlineto
+    -210 mm mul 10 mm mul rmoveto
+} def
+/vline {
+    0 297 mm mul rlineto
+    mm -297 mm mul rmoveto
+} def
+/mvline {
+    0 297 mm mul rlineto
+    5 mm mul -297 mm mul rmoveto
+} def
+/tvline {
+    0 297 mm mul rlineto
+    10 mm mul -297 mm mul rmoveto
+} def
+
+% mm-lines
+newpath
+0 0 moveto
+298 {hline} repeat
+0 0 moveto
+211 {vline} repeat
+0.4 setlinewidth
+0.8 setgray
+stroke
+
+% 5mm-lines
+newpath
+0 0 moveto
+60 {mhline} repeat
+0 0 moveto
+43 {mvline} repeat
+0.5 setlinewidth
+0.75 setgray
+stroke
+
+newpath
+0 0 moveto
+30 {thline} repeat
+0 0 moveto
+22 {tvline} repeat
+0.75 setlinewidth
+0.65 setgray
+stroke
+
+showpage
+
+
+%%EOF

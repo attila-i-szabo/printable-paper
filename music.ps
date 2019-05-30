@@ -1,0 +1,39 @@
+%!
+%%DocumentMedia: a4 595 842 80 () ()
+<< /PageSize [595 842] >> setpagedevice
+
+/stave 20 def % Width of a stave
+/num 15 def   % Number of staves
+
+/sep stave 4 div def % Separation of lines
+/skip % Skip between staves =
+842 num stave mul sub % total space between staves
+num 1 add div % divided by white spaces (#staves + 1)
+sep sub % minus the extra linesep added by the loop in music
+def
+
+/music { % Draws a stave
+    0 skip rmoveto
+    5 {
+	595 0 rlineto
+	-595 sep rmoveto
+    } repeat
+} def
+
+/page { %Draws a full page
+    newpath
+    0 sep moveto
+    num {music} repeat
+    closepath
+    0.7 setgray
+    0.75 setlinewidth
+    stroke
+} def
+
+%%Pages: 2
+%%Page: 1 1
+page
+showpage
+%%Page: 2 2
+page
+showpage
